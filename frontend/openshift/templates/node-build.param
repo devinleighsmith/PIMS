@@ -5,12 +5,12 @@
 #=========================================================
 NAME=node
 OUTPUT_IMAGE_TAG=latest
-GIT_REPO_URL=https://github.com/bcgov/PIMS.git
+GIT_REPO_URL=https://github.com/devinleighsmith/PIMS.git
 GIT_REF=master
 SOURCE_CONTEXT_DIR=frontend
-SOURCE_IMAGE_NAMESPACE=jcxjin-tools
+SOURCE_IMAGE_NAMESPACE=openshift
 SOURCE_IMAGE_NAME=nodejs
-SOURCE_IMAGE_TAG=latest
+SOURCE_IMAGE_TAG=8
 PIMS_THEME=default
 CPU_LIMIT=1
 MEMORY_LIMIT=4Gi
