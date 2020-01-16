@@ -89,7 +89,7 @@ objects:
               name: "${NAME}-artifacts:latest"
             paths:
               - destinationDir: tmp
-                sourcePath: "/opt/app-root/src/dist/."
+                sourcePath: "/opt/app-root/src/build/."
         type: Dockerfile
       strategy:
         dockerStrategy:
