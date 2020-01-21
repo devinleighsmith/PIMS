@@ -7,40 +7,6 @@ metadata:
     tags: react,nginx
   name: frontend
 objects:
-
-  - kind: NetworkSecurityPolicy
-    apiVersion: secops.pathfinder.gov.bc.ca/v1alpha1
-    metadata:
-      name: pods-to-api
-      labels:
-        name: pods-to-api
-        app: ${APP_NAME}
-        env: ${TAG_NAME}
-    spec:
-      description: |
-        Allow pods to talk to the internal api so deployments work.
-        This only needs to be specified once per environment.
-      source:
-        - - $namespace=apndkr-${TAG_NAME}
-      destination:
-        - - int:network=internal-cluster-api-endpoint
-
-  - kind: NetworkSecurityPolicy
-    apiVersion: secops.pathfinder.gov.bc.ca/v1alpha1
-    metadata:
-      name: ${NAME}
-      labels:
-        name: "${NAME}"
-        app: ${APP_NAME}
-        env: ${TAG_NAME}
-    spec:
-      description: |
-        Allow the frontend to talk to the internet or the api pod.
-      source:
-        - - role=${ROLE}
-      destination:
-        - - role=api
-
   - kind: DeploymentConfig
     apiVersion: v1
     metadata:

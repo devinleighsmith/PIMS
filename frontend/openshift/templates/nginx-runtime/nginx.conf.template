@@ -48,9 +48,9 @@ http {
 
         %DEV_SM_VARIABLES%
 
-        #location /api {
-        #    proxy_pass          %API_URL%;
-        #}
+        location /api {
+            proxy_pass          %API_URL%;
+        }
 
         # serve our app here
         location / {

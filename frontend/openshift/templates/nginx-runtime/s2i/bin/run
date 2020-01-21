@@ -73,6 +73,6 @@ echo "Setting:"
 echo "RealIpFrom = ${RealIpFrom:-172.51.0.0/16}"
 echo "API_URL = ${API_URL}"
 
-sed "s~%RealIpFrom%~${RealIpFrom:-172.51.0.0/16}~g; s~%API_URL%~${API_URL}~g; s~%DEV_SM_VARIABLES%~${DEV_SM_VARIABLES}~g" /tmp/nginx.conf.template > /etc/nginx/nginx.conf
+sed "s~%RealIpFrom%~${RealIpFrom:-172.51.0.0/16}~g; s~%API_URL%~${API_URL}~g; /tmp/nginx.conf.template > /etc/nginx/nginx.conf
 echo "---> Starting nginx ..."
 /usr/sbin/nginx -g "daemon off;"
