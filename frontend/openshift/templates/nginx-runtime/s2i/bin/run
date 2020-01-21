@@ -73,7 +73,7 @@ echo "Setting:"
 echo "RealIpFrom = ${RealIpFrom:-172.51.0.0/16}"
 echo "API_URL = ${API_URL}"
 
-echo "s~%RealIpFrom%~${RealIpFrom:-172.51.0.0/16}~g; s~%API_URL%~${API_URL}~g;"
-sed "s~%RealIpFrom%~${RealIpFrom:-172.51.0.0/16}~g; s~%API_URL%~${API_URL}~g;" /tmp/nginx.conf.template > /etc/nginx/nginx.conf
+echo "s~%RealIpFrom%~${RealIpFrom:-172.51.0.0/16}~g; s~%API_URL%~${API_URL:http://localhost:5000}~g;"
+sed "s~%RealIpFrom%~${RealIpFrom:-172.51.0.0/16}~g; s~%API_URL%~${API_URL:http://localhost:5000}~g;" /tmp/nginx.conf.template > /etc/nginx/nginx.conf
 echo "---> Starting nginx ..."
 /usr/sbin/nginx -g "daemon off;"
