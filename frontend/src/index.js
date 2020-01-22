@@ -10,6 +10,7 @@ import { KEYCLOAK } from 'constants/environment'
 
 const keycloak = new Keycloak(KEYCLOAK);
 const Index = () => {
+    console.log(process.env);
     return <KeycloakProvider
         keycloak={keycloak}
         LoadingComponent={<Spinner animation="border"></Spinner>}>
