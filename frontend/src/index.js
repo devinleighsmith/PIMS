@@ -8,7 +8,7 @@ import { KeycloakProvider } from 'react-keycloak';
 import { Spinner } from 'react-bootstrap';
 import { KEYCLOAK } from 'constants/environment'
 
-const keycloak = new Keycloak(KEYCLOAK);
+const keycloak = new Keycloak('keycloak.json');
 const Index = () => {
     console.log(process.env);
     return <KeycloakProvider
