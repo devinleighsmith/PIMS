@@ -27,8 +27,7 @@
     "react-keycloak": "^8.0.1-191210",
     "react-leaflet": "~2.6.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0",
-    "typescript": "~3.7.3"
+    "react-scripts": "3.3.0"
   },
   "devDependencies": {
     "eslint-config-prettier": "~6.7.0",

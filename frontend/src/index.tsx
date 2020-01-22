@@ -3,14 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Keycloak from 'keycloak-js';
+import Keycloak, { KeycloakInstance } from 'keycloak-js';
 import { KeycloakProvider } from 'react-keycloak';
 import { Spinner } from 'react-bootstrap';
-import { KEYCLOAK } from 'constants/environment'
 
-const keycloak = new Keycloak('keycloak.json');
+//@ts-ignore
+const keycloak:KeycloakInstance = new Keycloak('keycloak.json');
 const Index = () => {
-    console.log(process.env);
     return <KeycloakProvider
         keycloak={keycloak}
         LoadingComponent={<Spinner animation="border"></Spinner>}>
