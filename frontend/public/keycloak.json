@@ -1,6 +1,6 @@
 {
   "realm": "xz0xtue5",
-  "auth-server-url": "http://pims-dev.pathfinder.gov.bc.ca ",
+  "auth-server-url": "https://pims-dev.pathfinder.gov.bc.ca ",
   "ssl-required": "external",
   "resource": "pims-app",
   "public-client": true,
