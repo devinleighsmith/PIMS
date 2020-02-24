@@ -1,0 +1,41 @@
+@import "../../fonts.scss";
+.map-filter-bar.container-fluid {
+  position: fixed;
+  top: 8rem;
+  z-index: 500;
+  color: #494949;
+  .row .col-md-5 {
+    display: inline-flex;
+  }
+  input {
+    border-radius: 0;
+    margin-right: 0.5rem;
+    border: 1px solid #606060;
+    max-width: 30rem;
+    min-width: 15rem;
+  }:focus {
+    box-shadow: unset;
+  }
+}
+
+button.map-filter-dropdown {
+  background-color: #fff;
+  min-width: 7rem;
+  color: #494949;
+  border: 1px solid #606060;
+  transition: none;
+  opacity: 1;
+  font-size: 14px;
+  font-family: "BCSans" Fallback, sans-serif;
+  padding: 0.5rem;
+}
+
+.dropdown {
+  margin-right: 0.5rem;
+  .dropdown-menu {
+    margin-top: 0;
+  }.show {
+    max-height: 25rem;
+    overflow-y: auto;
+  }
+}

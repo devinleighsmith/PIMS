@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Pims.Api.Data;
+using MapperModel = Pims.Api.Areas.Admin.Models;
 using Model = Pims.Api.Models;
 using Entity = Pims.Api.Data.Entities;
 using System.Security.Claims;
@@ -9,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
 
 namespace Pims.Api.Controllers
 {
@@ -24,6 +26,7 @@ namespace Pims.Api.Controllers
         private readonly ILogger<ParcelController> _logger;
         private readonly IConfiguration _configuration;
         private readonly PIMSContext _dbContext;
+        private readonly IMapper _mapper;
         #endregion
 
         #region Constructors
@@ -33,11 +36,12 @@ namespace Pims.Api.Controllers
         /// <param name="logger"></param>
         /// <param name="configuration"></param>
         /// <param name="dbContext"></param>
-        public ParcelController (ILogger<ParcelController> logger, IConfiguration configuration, PIMSContext dbContext)
+        public ParcelController (ILogger<ParcelController> logger, IConfiguration configuration, PIMSContext dbContext, IMapper mapper)
         {
             _logger = logger;
             _configuration = configuration;
             _dbContext = dbContext;
+            _mapper = mapper;
         }
         #endregion
 
@@ -47,7 +51,7 @@ namespace Pims.Api.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetMyParcels (double? neLat = null, double? neLong = null, double? swLat = null, double? swLong = null)
+        public IActionResult GetMyParcels (double? neLat = null, double? neLong = null, double? swLat = null, double? swLong = null, int? agencyId = null, int? propertyClassificationId = null)
         {
             IEnumerable<Entity.Parcel> parcels = _dbContext.Parcels.ToArray();
             if(neLat != null && neLong != null && swLat != null && swLong != null) {
@@ -57,7 +61,20 @@ namespace Pims.Api.Controllers
                     && parcel.Longitude <= neLong 
                     && parcel.Longitude >= swLong);
             }
-            return new JsonResult (parcels.Select (p => new Model.Parcel (p)).ToArray ());
+            if(agencyId.HasValue)
+            {
+                parcels = parcels.Where(parcel =>
+                    parcel.AgencyId == agencyId.Value
+                );
+            }
+            if (propertyClassificationId.HasValue)
+            {
+                parcels = parcels.Where(parcel =>
+                    parcel.ClassificationId == propertyClassificationId.Value
+                );
+            }
+
+            return new JsonResult(parcels.Select(p => new Model.Parcel(p)).ToArray());
         }
 
         /// <summary>
@@ -71,7 +88,7 @@ namespace Pims.Api.Controllers
             if(entity == null) {
                 return NoContent(); 
             }
-            return new JsonResult (new Model.ParcelDetail (entity));
+            return new JsonResult (_mapper.Map<MapperModel.ParcelModel>(entity));
         }
 
         /// <summary>
