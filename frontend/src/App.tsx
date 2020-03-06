@@ -40,6 +40,7 @@ const App = () => {
     return !keycloak?.authenticated || keycloak?.profile;
   };
 
+  };
   return isInitialized() ? (
     <Router>
       <Container className="App" fluid={true}>

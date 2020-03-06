@@ -31,6 +31,7 @@ namespace Pims.Dal.Entities
         /// get/set - The sort order of the lookup item.
         /// </summary>
         /// <value></value>
+        [NotMapped]
         public int SortOrder { get; set; }
         #endregion
 
