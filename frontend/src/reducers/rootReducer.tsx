@@ -30,10 +30,6 @@ export const reducerObject = {
     networkReducer,
     reducerTypes.UPDATE_REQUEST_ACCESS_ADMIN,
   ),
-  [reducerTypes.POST_REQUEST_ACCESS_ADMIN]: filteredReducer(
-    networkReducer,
-    reducerTypes.POST_REQUEST_ACCESS_ADMIN,
-  ),
 };
 
 export const rootReducer = combineReducers(reducerObject);
