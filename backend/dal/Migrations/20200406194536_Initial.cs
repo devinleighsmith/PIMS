@@ -4,12 +4,12 @@ using Pims.Dal.Helpers.Migrations;
 
 namespace Pims.Dal.Migrations
 {
-    public partial class Initial : SeedMigration
+    public partial class initial : SeedMigration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             PreDeploy(migrationBuilder);
-
+            
             migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
@@ -1420,7 +1420,7 @@ namespace Pims.Dal.Migrations
                 name: "IX_Users_IsDisabled_LastName_FirstName",
                 table: "Users",
                 columns: new[] { "IsDisabled", "LastName", "FirstName" });
-
+        
             PostDeploy(migrationBuilder);
         }
 
