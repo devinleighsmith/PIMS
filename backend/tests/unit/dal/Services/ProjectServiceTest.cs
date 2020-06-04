@@ -725,7 +725,7 @@ namespace Pims.Dal.Test.Services
             result.Properties.Should().HaveCount(1);
             result.Properties.First().PropertyType.Should().Be(Entity.PropertyTypes.Land);
             result.Properties.First().Parcel.ClassificationId.Should().Be(2);
-            result.Properties.First().Parcel.Evaluations.Should().HaveCount(2);
+            Assert.Equal(2, result.Properties.First().Parcel.Evaluations.Count);
         }
 
         [Fact]
@@ -833,7 +833,7 @@ namespace Pims.Dal.Test.Services
             result.Properties.Should().HaveCount(1);
             result.Properties.First().PropertyType.Should().Equals(Entity.PropertyTypes.Building);
             result.Properties.First().Building.ClassificationId.Should().Equals(2);
-            result.Properties.First().Building.Evaluations.Should().HaveCount(2);
+            Assert.Equal(2, result.Properties.First().Building.Evaluations.Count);
         }
 
         [Fact]
