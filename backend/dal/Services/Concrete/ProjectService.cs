@@ -82,31 +82,6 @@ namespace Pims.Dal.Services
                 .Include(p => p.Agency.Parent)
                 .Include(p => p.Tasks)
                 .Include(p => p.Tasks).ThenInclude(t => t.Task)
-                .Include(p => p.Properties)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Status)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Evaluations)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Fiscals)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Classification)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Address)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Address).ThenInclude(a => a.City)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Address).ThenInclude(a => a.Province)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Agency)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel).ThenInclude(p => p.Agency).ThenInclude(a => a.Parent)
-                .Include(p => p.Properties).ThenInclude(p => p.Parcel)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.Status)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.Evaluations)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.Fiscals)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.Classification)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.Address)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.Address).ThenInclude(a => a.City)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(p => p.Address).ThenInclude(a => a.Province)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.Agency)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.BuildingConstructionType)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.BuildingPredominateUse)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.BuildingOccupantType)
-                .Include(p => p.Properties).ThenInclude(p => p.Building).ThenInclude(b => b.Agency).ThenInclude(a => a.Parent)
-                .AsNoTracking()
                 .FirstOrDefault(p => p.Id == id &&
                     (isAdmin || userAgencies.Contains(p.AgencyId))) ?? throw new KeyNotFoundException();
 
@@ -334,7 +309,7 @@ namespace Pims.Dal.Services
                 {
                     if (property.PropertyType == PropertyTypes.Land)
                     {
-                        // Only allow editing the classification and evaluations/fiscals for now
+                        // Only allow editing the classification, zoning, zoningpotential and evaluations/fiscals for now
                         existingProperty.Parcel.ProjectNumber = originalProjectNumber;
                         existingProperty.Parcel.ClassificationId = property.Parcel.ClassificationId;
                         existingProperty.Parcel.Zoning = property.Parcel.Zoning;
