@@ -166,6 +166,7 @@ export const toApiProject = (project: IProject) => {
     properties: properties,
     exemptionRationale: project.exemptionRationale,
     exemptionRequested: project.exemptionRequested,
+    privateNote: project.privateNote,
   };
   return apiProject;
 };
