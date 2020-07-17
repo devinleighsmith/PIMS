@@ -2293,7 +2293,7 @@ namespace Pims.Dal.Test.Services
             result.Status.Should().Be(disposed);
             result.DisposedOn.Should().NotBeNull();
             var property = result.Properties.First().Parcel;
-            property.AgencyId.Should().Be(2);
+            property.AgencyId.Should().Be(null);
             property.ClassificationId.Should().Be(4);
             property.IsVisibleToOtherAgencies.Should().BeFalse();
         }
