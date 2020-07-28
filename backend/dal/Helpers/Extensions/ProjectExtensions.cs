@@ -409,7 +409,6 @@ namespace Pims.Dal.Helpers.Extensions
         public static bool IsProjectClosed(this Entity.Project project)
         {
             if (project.Status == null) throw new ArgumentNullException(nameof(project.Status));
-
             return project.Status.IsTerminal;
         }
 
