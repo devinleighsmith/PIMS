@@ -4,6 +4,7 @@ import { Form } from 'react-bootstrap';
 import { getIn, useFormikContext } from 'formik';
 import styled from 'styled-components';
 import TooltipIcon from 'components/common/TooltipIcon';
+import classNames from 'classnames';
 
 interface ITypeaheadFieldProps<T extends TypeaheadModel> extends TypeaheadProps<T> {
   name: string;
@@ -15,17 +16,9 @@ interface ITypeaheadFieldProps<T extends TypeaheadModel> extends TypeaheadProps<
   tooltip?: string;
   /** A function that takes in the value stored in formik and returns the corresponding label for that value. */
   getOptionByValue?: (value?: any) => T[];
+  /** Class name of the input wrapper */
+  outerClassName?: string;
 }
-
-const Group = styled(Form.Group)`
-  div {
-    width: 100%;
-  }
-`;
-
-const Label = styled(Form.Label)`
-  margin-bottom: 0px;
-`;
 
 const Feedback = styled(Form.Control.Feedback)`
   display: block;
@@ -38,6 +31,7 @@ export function TypeaheadField<T extends TypeaheadModel>({
   hideValidation,
   tooltip,
   getOptionByValue,
+  outerClassName,
   ...rest
 }: ITypeaheadFieldProps<T>) {
   const { touched, values, errors, setFieldTouched, setFieldValue } = useFormikContext();
@@ -47,12 +41,8 @@ export function TypeaheadField<T extends TypeaheadModel>({
     getOptionByValue = (value: T) => (!!value ? ([value] as T[]) : ([] as T[]));
   }
   return (
-    <Group>
-      {!!label && (
-        <Label>
-          {label} {!!required && <span className="required">*</span>}
-        </Label>
-      )}
+    <Form.Group className={classNames(!!required ? 'required' : '', outerClassName)}>
+      {!!label && <Form.Label>{label}</Form.Label>}
       {!!tooltip && <TooltipIcon toolTipId="typeAhead-tip" toolTip={tooltip} />}
       <Typeahead<T>
         {...rest}
@@ -67,6 +57,6 @@ export function TypeaheadField<T extends TypeaheadModel>({
         id={`${name}-field`}
       />
       {hasError && <Feedback type="invalid">{getIn(errors, name)}</Feedback>}
-    </Group>
+    </Form.Group>
   );
 }
