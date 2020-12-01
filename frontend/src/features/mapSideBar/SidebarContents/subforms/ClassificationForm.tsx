@@ -75,7 +75,7 @@ export const ClassificationForm: React.FC<IClassificationFormProps> = ({
       case CLASSIFICATIONS.CoreStrategic:
         return InfoBoxWithContent('Core Strategic');
       case CLASSIFICATIONS.SurplusActive:
-        return InfoBoxWithContent('Surplus Actice');
+        return InfoBoxWithContent('Surplus Active');
       case CLASSIFICATIONS.SurplusEncumbered:
         return InfoBoxWithContent('Surplus Encumbered');
     }
@@ -89,7 +89,9 @@ export const ClassificationForm: React.FC<IClassificationFormProps> = ({
       <Row>
         <Col md={6}>
           <Row style={{ display: 'flex' }}>
-            <Label required>{fieldLabel}</Label>
+            <Label required style={{ marginBottom: '0' }}>
+              {fieldLabel}
+            </Label>
             <FastSelect
               formikProps={formikProps}
               type="number"
@@ -111,6 +113,11 @@ export const ClassificationForm: React.FC<IClassificationFormProps> = ({
           )}
         </Col>
         <Col md={6}>{renderInfo()}</Col>
+      </Row>
+      <Row>
+        <FieldDescription>
+          A disposal project must be initiated in order to mark a property as "surplus active".
+        </FieldDescription>
       </Row>
     </>
   );

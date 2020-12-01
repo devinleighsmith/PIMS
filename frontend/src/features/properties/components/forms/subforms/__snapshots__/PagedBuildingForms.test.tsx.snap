@@ -35,7 +35,7 @@ exports[`PagedBuildingForms functionality displays any pre-existing buildings 1`
   </div>
   <div class=\\"col-md-6\\">
     <div class=\\"field-row row\\">
-      <p class=\\"label\\"><span class=\\"req\\">*</span>Street Address</p>
+      <p class=\\"label undefined\\"><span class=\\"req\\">*</span>Street Address</p>
       <div class=\\"GeocoderAutoComplete\\">
         <div>
           <div class=\\"form-group\\"><input name=\\"buildings.0.address.line1\\" field=\\"buildings.0.address.line1\\" id=\\"input-buildings.0.address.line1\\" class=\\"form-control\\" value=\\"line1\\" disabled=\\"\\"></div>
@@ -43,7 +43,7 @@ exports[`PagedBuildingForms functionality displays any pre-existing buildings 1`
       </div>
     </div>
     <div class=\\"field-row row\\">
-      <p class=\\"label\\"><span class=\\"req\\">*</span>Location</p>
+      <p class=\\"label undefined\\"><span class=\\"req\\">*</span>Location</p>
       <div class=\\"sc-AxjAm gLmrxD form-group\\">
         <div class=\\"rbt\\" style=\\"outline: none; position: relative;\\" tabindex=\\"-1\\">
           <div style=\\"display: flex; flex: 1; height: 100%; position: relative;\\"><input autocomplete=\\"off\\" type=\\"text\\" name=\\"buildings.0.address.administrativeArea\\" id=\\"buildings.0.address.administrativeArea-field\\" aria-autocomplete=\\"both\\" aria-expanded=\\"false\\" aria-haspopup=\\"listbox\\" role=\\"combobox\\" class=\\"rbt-input-main form-control rbt-input\\" value=\\"administrativeArea\\" disabled=\\"\\"><input aria-hidden=\\"true\\" class=\\"rbt-input-hint\\" readonly=\\"\\" style=\\"background-color: transparent; border-color: transparent; box-shadow: none; color: rgba(0, 0, 0, 0.35); left: 0px; pointer-events: none; position: absolute; top: 0px; width: 100%; border-style: inset inset inset inset; border-width: 2px 2px 2px 2px; line-height: normal; padding: 1px 1px 1px 1px;\\" tabindex=\\"-1\\" value=\\"\\"></div>
@@ -51,14 +51,14 @@ exports[`PagedBuildingForms functionality displays any pre-existing buildings 1`
       </div>
     </div>
     <div class=\\"field-row row\\">
-      <p class=\\"label\\">Province</p>
+      <p class=\\"label undefined\\">Province</p>
       <div class=\\"form-group\\"><select name=\\"buildings.0.address.provinceId\\" disabled=\\"\\" id=\\"input-buildings.0.address.provinceId\\" class=\\"form-select form-control\\">
           <option value=\\"\\">Must Select One</option>
           <option value=\\"2222\\" class=\\"option\\">test province</option>
         </select></div>
     </div>
     <div class=\\"postal row\\">
-      <p class=\\"label\\">Postal Code</p>
+      <p class=\\"label undefined\\">Postal Code</p>
       <div class=\\"form-group\\"><input name=\\"buildings.0.address.postal\\" style=\\"width: 120px;\\" id=\\"input-buildings.0.address.postal\\" class=\\"input-small form-control\\" value=\\"postal\\" disabled=\\"\\"></div>
     </div>
     <div class=\\"lat-long\\" style=\\"position: relative;\\">
@@ -71,11 +71,11 @@ exports[`PagedBuildingForms functionality displays any pre-existing buildings 1`
         <div class=\\"marker-svg col\\"><button class=\\"sc-fzoLag jpnsoB\\" disabled=\\"\\"><svg>draft-building-icon.svg</svg></button></div>
       </div>
       <div class=\\"form-row\\">
-        <p class=\\"label\\"><span class=\\"req\\">*</span>Latitude</p>
+        <p class=\\"label undefined\\"><span class=\\"req\\">*</span>Latitude</p>
         <div class=\\"form-group\\"><input name=\\"buildings.0.latitude\\" type=\\"number\\" id=\\"input-buildings.0.latitude\\" class=\\"input-medium form-control\\" value=\\"9\\" disabled=\\"\\"></div>
       </div>
       <div class=\\"form-row\\">
-        <p class=\\"label\\"><span class=\\"req\\">*</span>Longitude</p>
+        <p class=\\"label undefined\\"><span class=\\"req\\">*</span>Longitude</p>
         <div class=\\"form-group\\"><input name=\\"buildings.0.longitude\\" type=\\"number\\" id=\\"input-buildings.0.longitude\\" class=\\"input-medium form-control\\" value=\\"10\\" disabled=\\"\\"></div>
       </div>
     </div>
