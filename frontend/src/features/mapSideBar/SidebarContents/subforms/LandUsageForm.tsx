@@ -1,9 +1,9 @@
 import './LandUsageForm.scss';
 
-import { FastSelect, FastInput } from 'components/common/form';
+import { FastInput } from 'components/common/form';
 import React, { useCallback } from 'react';
 import { Container, Row } from 'react-bootstrap';
-import { FormikProps, useFormikContext } from 'formik';
+import { FormikProps } from 'formik';
 import { Label } from 'components/common/Label';
 import { ClassificationForm } from './ClassificationForm';
 
@@ -20,7 +20,6 @@ export const LandUsageForm = <T extends any>(props: ILandUsageProps & FormikProp
     },
     [props.nameSpace],
   );
-  const formikProps = useFormikContext();
 
   return (
     <Container>
