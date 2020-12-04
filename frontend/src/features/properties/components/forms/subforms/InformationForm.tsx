@@ -21,6 +21,7 @@ interface InformationFormProps {
 export const defaultInformationFormValues = {
   name: '',
   description: '',
+  landLegalDescription: '',
   classificationId: '',
   agencyId: '',
   isSensitive: false,
