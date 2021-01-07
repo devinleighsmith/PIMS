@@ -2,15 +2,9 @@ import React, { useState, useRef } from 'react';
 import Map, { MapViewportChangeEvent } from '../../../components/maps/leaflet/Map';
 import './MapView.scss';
 import { Map as LeafletMap } from 'react-leaflet';
-import { fetchPropertyDetail } from 'actionCreators/parcelsActionCreator';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from 'reducers/rootReducer';
-import {
-  IProperty,
-  storeParcelDetail,
-  IPropertyDetail,
-  PropertyTypes,
-} from 'actions/parcelsActions';
+import { IProperty, storeParcelDetail, IPropertyDetail } from 'actions/parcelsActions';
 import { ILookupCodeState } from 'reducers/lookupCodeReducer';
 import { ILookupCode } from 'actions/lookupActions';
 import { LeafletMouseEvent } from 'leaflet';
@@ -98,22 +92,6 @@ const MapView: React.FC<MapViewProps> = (props: MapViewProps) => {
           agencies={agencies}
           propertyClassifications={propertyClassifications}
           lotSizes={lotSizes}
-          onMarkerClick={
-            props.onMarkerClick ??
-            ((p, position) => {
-              if (
-                p.propertyTypeId !== undefined &&
-                [PropertyTypes.BUILDING, PropertyTypes.PARCEL].includes(p.propertyTypeId)
-              ) {
-                p.id && dispatch(fetchPropertyDetail(p.id, p.propertyTypeId as any, position));
-              } else {
-                setSelectedDraftProperty({
-                  propertyTypeId: p.propertyTypeId,
-                  parcelDetail: { ...p },
-                } as any);
-              }
-            })
-          }
           onMarkerPopupClose={() => {
             setSelectedDraftProperty(null);
             dispatch(storeParcelDetail(null));

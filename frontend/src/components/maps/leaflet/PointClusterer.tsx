@@ -44,10 +44,7 @@ export const PointClusterer: React.FC<PointClustererProps> = ({
   const featureGroupRef = useRef<any>();
   const filterState = useFilterContext();
 
-  const [currentSelected, setCurrentSelected] = useState(selected);
-  useDeepCompareEffect(() => {
-    setCurrentSelected(selected);
-  }, [selected, setCurrentSelected]);
+  const [currentSelected, setCurrentSelected] = useState(null);
 
   const leaflet = useLeaflet();
   const [spider, setSpider] = useState<any>({});
@@ -170,13 +167,13 @@ export const PointClusterer: React.FC<PointClustererProps> = ({
             key={index}
             position={[latitude, longitude]}
             icon={getMarkerIcon(cluster)}
+            onpopupopen={() => setCurrentSelected(cluster.properties.id)}
           >
             <Popup autoPan={false}>
               <PopupView
                 propertyTypeId={cluster.properties.propertyTypeId}
                 propertyDetail={cluster.properties as any}
                 onLinkClick={() => {
-                  setSpider({});
                   !!onMarkerClick && onMarkerClick(cluster as any);
                 }}
               />
@@ -194,13 +191,13 @@ export const PointClusterer: React.FC<PointClustererProps> = ({
           key={index}
           position={m.position}
           icon={getMarkerIcon(m)}
+          onpopupopen={() => setCurrentSelected(m.properties.id)}
         >
           <Popup autoPan={false}>
             <PopupView
               propertyTypeId={m.properties.propertyTypeId}
               propertyDetail={m.properties}
               onLinkClick={() => {
-                setSpider({});
                 !!onMarkerClick && onMarkerClick(m as any);
               }}
             />
@@ -217,7 +214,8 @@ export const PointClusterer: React.FC<PointClustererProps> = ({
        * render selected property marker, auto opens the property popup
        */}
       {!!selected?.parcelDetail &&
-        selected?.parcelDetail?.id === currentSelected?.parcelDetail?.id && (
+        !currentSelected &&
+        (!spider || Object.keys(spider).length === 0) && (
           <SelectedPropertyMarker
             {...selected.parcelDetail}
             icon={getMarkerIcon({ properties: selected } as any)}
