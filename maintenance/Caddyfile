@@ -2,9 +2,7 @@
 
 root * /var/www/html
 
-log stdout
-
-errors stdout
+log
 
 rewrite * /maintenance.html
 
