@@ -9,7 +9,7 @@ IFS=$'\n\t'
 
 # Parameters and mode variables
 #
-PROJECT=jcxjin-${1:-}
+PROJECT=354028-${1:-}
 COMMAND=${2:-}
 VERBOSE=${VERBOSE:-}
 
@@ -24,12 +24,12 @@ STATIC_PAGE_NAME=${STATIC_PAGE_NAME:-proxy-caddy}
 STATIC_PAGE_PORT=${STATIC_PAGE_PORT:-2015-tcp}
 STATIC_PAGE_HOSTNAME=${STATIC_PAGE_HOSTNAME:-proxy-caddy-pims-${ENVIRONMENT_NAME}${INSTANCE_ID}.pathfinder.gov.bc.ca}
 #
-IMG_SRC=${IMG_SRC:-bcgov-s2i-caddy}
+IMG_SRC=${IMG_SRC:-s2i-caddy}
 GIT_REPO=${GIT_REPO:-https://github.com/bcgov/pims.git}
-GIT_BRANCH=${GIT_BRANCH:-dev}
-OC_BUILD=${OC_BUILD:-../openshift/templates/maintenance/caddy.bc.yaml}
-OC_DEPLOY=${OC_DEPLOY:-../openshift/templates/maintenance/caddy.dc.yaml}
-BUILD_PROJECT=${BUILD_PROJECT:-jcxjin-tools}
+GIT_REF=${GIT_REF:-dev}
+OC_BUILD=${OC_BUILD:-../openshift/4.0/templates/maintenance/caddy.bc.yaml}
+OC_DEPLOY=${OC_DEPLOY:-../openshift/4.0/templates/maintenance/caddy.dc.yaml}
+BUILD_PROJECT=${BUILD_PROJECT:-354028-tools}
 
 # support PROD route overrides
 APPLICATION_ROUTE=${APPLICATION_ROUTE:-${APPLICATION_NAME}-${ENVIRONMENT_NAME}${INSTANCE_ID}}
@@ -52,7 +52,7 @@ then
   echo " './maintenance.sh <project_name> <on|off|build|deploy>'"
   echo
   echo "Set variables to non-defaults at runtime.  E.g.:"
-  echo " 'VERBOSE=true GIT_BRANCH=master ./maintenance.sh <...>'"
+  echo " 'VERBOSE=true GIT_REF=master ./maintenance.sh <...>'"
   echo
   exit
 fi
@@ -68,7 +68,6 @@ then
   echo
   exit
 fi
-
 
 # Action based on parameter
 #
@@ -90,8 +89,9 @@ then
     "port": { "targetPort": "'$( echo ${STATIC_PAGE_PORT} )'" }}}'
 elif [ "${COMMAND}" == "build" ]
 then
+  echo "Parameter '${GIT_REF}'"
   oc process -f ${OC_BUILD} \
-    -p NAME=${STATIC_PAGE_NAME} GIT_REPO=${GIT_REPO} GIT_BRANCH=${GIT_BRANCH} IMG_SRC=${IMG_SRC} \
+    -p NAME=${STATIC_PAGE_NAME} GIT_REPO=${GIT_REPO} GIT_REF=${GIT_REF} IMG_SRC=${IMG_SRC} \
     | oc apply -f -
 elif [ "${COMMAND}" == "deploy" ]
 then
