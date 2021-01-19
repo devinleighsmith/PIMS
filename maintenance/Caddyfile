@@ -8,10 +8,11 @@
 
 localhost:2015
 root * /var/www/html
+file_server {
+  index maintenance.html
+}
 
 log
-
-redir /maintenance.html
 
 header / {
   Cache-Control "no-cache, no-store, must-revalidate"
