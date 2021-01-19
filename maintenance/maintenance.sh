@@ -26,7 +26,7 @@ STATIC_PAGE_HOSTNAME=${STATIC_PAGE_HOSTNAME:-proxy-caddy-pims-${ENVIRONMENT_NAME
 #
 IMG_SRC=${IMG_SRC:-s2i-caddy}
 GIT_REPO=${GIT_REPO:-https://github.com/devinleighsmith/pims.git}
-GIT_REF=${GIT_REF:-dev}
+GIT_REF=${GIT_REF:-proxy-caddy}
 OC_S2I=${OC_BUILD:-../openshift/4.0/templates/maintenance/caddy.s2i.bc.yaml}
 OC_BUILD=${OC_BUILD:-../openshift/4.0/templates/maintenance/caddy.bc.yaml}
 OC_DEPLOY=${OC_DEPLOY:-../openshift/4.0/templates/maintenance/caddy.dc.yaml}
