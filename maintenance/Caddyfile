@@ -6,6 +6,12 @@ log
 
 rewrite * /maintenance.html
 
+{
+    storage file_system {
+        root /var/lib/caddy
+    }
+}
+
 header / {
   Cache-Control "no-cache, no-store, must-revalidate"
   Pragma "no-cache"
