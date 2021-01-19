@@ -27,6 +27,7 @@ STATIC_PAGE_HOSTNAME=${STATIC_PAGE_HOSTNAME:-proxy-caddy-pims-${ENVIRONMENT_NAME
 IMG_SRC=${IMG_SRC:-s2i-caddy}
 GIT_REPO=${GIT_REPO:-https://github.com/bcgov/pims.git}
 GIT_REF=${GIT_REF:-dev}
+OC_S2I=${OC_BUILD:-../openshift/4.0/templates/maintenance/caddy.s2i.bc.yaml}
 OC_BUILD=${OC_BUILD:-../openshift/4.0/templates/maintenance/caddy.bc.yaml}
 OC_DEPLOY=${OC_DEPLOY:-../openshift/4.0/templates/maintenance/caddy.dc.yaml}
 BUILD_PROJECT=${BUILD_PROJECT:-354028-tools}
@@ -87,11 +88,15 @@ then
   oc patch route ${STATIC_PAGE_NAME} -n ${PROJECT} -p \
     '{ "spec": { "to": { "name": "'$( echo ${STATIC_PAGE_NAME} )'" },
     "port": { "targetPort": "'$( echo ${STATIC_PAGE_PORT} )'" }}}'
+elif [ "${COMMAND}" == "s2i" ]
+then
+  oc process -f ${OC_S2I} \
+    -p NAME=${IMG_SRC} GIT_REPO=${GIT_REPO} GIT_REF=${GIT_REF} OUTPUT_IMAGE_TAG="latest" \
+    | oc apply -f -
 elif [ "${COMMAND}" == "build" ]
 then
-  echo "Parameter '${GIT_REF}'"
   oc process -f ${OC_BUILD} \
-    -p NAME=${STATIC_PAGE_NAME} GIT_REPO=${GIT_REPO} GIT_REF=${GIT_REF} IMG_SRC=${IMG_SRC} \
+    -p GIT_REPO=${GIT_REPO} GIT_REF=${GIT_REF} IMG_SRC=${IMG_SRC} \
     | oc apply -f -
 elif [ "${COMMAND}" == "deploy" ]
 then
