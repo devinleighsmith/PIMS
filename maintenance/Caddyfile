@@ -1,10 +1,12 @@
 {
     storage file_system {
         root /var/www/html
+        http_port 2016
+        https_port 2015
     }
 }
 
-0.0.0.0:2015
+:2015
 
 root * /var/www/html
 
