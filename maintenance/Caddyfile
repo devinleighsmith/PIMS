@@ -1,3 +1,9 @@
+{
+    storage file_system {
+        root /var/lib/caddy
+    }
+}
+
 0.0.0.0:2015
 
 root * /var/www/html
@@ -5,12 +11,6 @@ root * /var/www/html
 log
 
 rewrite * /maintenance.html
-
-{
-    storage file_system {
-        root /var/lib/caddy
-    }
-}
 
 header / {
   Cache-Control "no-cache, no-store, must-revalidate"
