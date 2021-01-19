@@ -1,6 +1,6 @@
 {
     storage file_system {
-        root /var/lib/caddy
+        root /var/www/html
     }
 }
 
