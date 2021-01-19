@@ -6,11 +6,12 @@
     }
 }
 
-:2015
+localhost:2015
+root * /var/www/html
 
 log
 
-rewrite * /var/www/html/maintenance.html
+redir /maintenance.html
 
 header / {
   Cache-Control "no-cache, no-store, must-revalidate"
