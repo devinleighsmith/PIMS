@@ -10,7 +10,7 @@ localhost
 
 log
 
-redirect * /maintenance.html
+rewrite * /var/www/html/maintenance.html
 
 header / {
   Cache-Control "no-cache, no-store, must-revalidate"
