@@ -25,7 +25,7 @@ STATIC_PAGE_PORT=${STATIC_PAGE_PORT:-2015-tcp}
 STATIC_PAGE_HOSTNAME=${STATIC_PAGE_HOSTNAME:-proxy-caddy-pims-${ENVIRONMENT_NAME}${INSTANCE_ID}.pathfinder.gov.bc.ca}
 #
 IMG_SRC=${IMG_SRC:-s2i-caddy}
-GIT_REPO=${GIT_REPO:-https://github.com/bcgov/pims.git}
+GIT_REPO=${GIT_REPO:-https://github.com/devinleighsmith/pims.git}
 GIT_REF=${GIT_REF:-dev}
 OC_S2I=${OC_BUILD:-../openshift/4.0/templates/maintenance/caddy.s2i.bc.yaml}
 OC_BUILD=${OC_BUILD:-../openshift/4.0/templates/maintenance/caddy.bc.yaml}
