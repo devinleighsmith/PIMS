@@ -320,6 +320,8 @@ namespace Pims.Dal.Services
                 || (originalParcel.Parcels.Count > 0 && parcel.Subdivisions.Count > 0)
                 || (originalParcel.Subdivisions.Count > 0 && parcel.Parcels.Count > 0)) throw new InvalidOperationException("Parcel may only have assocatiated parcels or subdivisions, not both.");
 
+            if (parcel.Parcels.Count() > 0 && parcel.Subdivisions.Count() > 0) throw new InvalidOperationException("Parcel may only have assocatiated parcels or subdivisions, not both.");
+
             // Users who don't own the parcel, but only own a building cannot update the parcel.
             if (allowEdit)
             {
