@@ -115,6 +115,7 @@ export const defaultBuildingValues: IBuilding = {
   agencyCode: '',
   assessedBuilding: '',
   assessedLand: '',
+  projectNumbers: [],
 };
 
 /**

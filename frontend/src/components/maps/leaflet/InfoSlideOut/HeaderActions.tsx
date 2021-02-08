@@ -60,6 +60,7 @@ const HeaderActions: React.FC<IHeaderActions> = ({
 
   const buildingId = propertyTypeId === PropertyTypes.BUILDING ? propertyInfo?.id : undefined;
   const parcelId = propertyTypeId === PropertyTypes.PARCEL ? propertyInfo?.id : undefined;
+  const canEdit = keycloak.canUserEditProperty(propertyInfo);
   return (
     <LinkMenu>
       Actions:
@@ -84,7 +85,9 @@ const HeaderActions: React.FC<IHeaderActions> = ({
           >
             View details
           </Link>
-          <VerticalBar />
+          {canEdit && (
+            <>
+              <VerticalBar />
           {canEditDetails && (
             <>
               <Link
@@ -106,6 +109,8 @@ const HeaderActions: React.FC<IHeaderActions> = ({
               >
                 Update
               </Link>
+            </>
+          )}
               <VerticalBar />
             </>
           )}
