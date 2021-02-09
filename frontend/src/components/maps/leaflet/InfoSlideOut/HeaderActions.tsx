@@ -5,6 +5,7 @@ import { IBuilding, IParcel, PropertyTypes } from 'actions/parcelsActions';
 import { Link, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import variables from '_variables.module.scss';
+import useKeycloakWrapper from 'hooks/useKeycloakWrapper';
 
 const LinkMenu = styled(Row)`
   background-color: ${variables.filterBackgroundColor};
@@ -60,6 +61,7 @@ const HeaderActions: React.FC<IHeaderActions> = ({
 
   const buildingId = propertyTypeId === PropertyTypes.BUILDING ? propertyInfo?.id : undefined;
   const parcelId = propertyTypeId === PropertyTypes.PARCEL ? propertyInfo?.id : undefined;
+  const keycloak = useKeycloakWrapper();
   const canEdit = keycloak.canUserEditProperty(propertyInfo);
   return (
     <LinkMenu>
@@ -88,29 +90,29 @@ const HeaderActions: React.FC<IHeaderActions> = ({
           {canEdit && (
             <>
               <VerticalBar />
-          {canEditDetails && (
-            <>
-              <Link
-                onClick={() => {
-                  jumpToView();
-                  if (onLinkClick) onLinkClick();
-                }}
-                to={{
-                  pathname: `/mapview`,
-                  search: queryString.stringify({
-                    ...queryString.parse(location.search),
-                    disabled: false,
-                    sidebar: true,
-                    loadDraft: false,
-                    buildingId: buildingId,
-                    parcelId: parcelId,
-                  }),
-                }}
-              >
-                Update
-              </Link>
-            </>
-          )}
+              {canEditDetails && (
+                <>
+                  <Link
+                    onClick={() => {
+                      jumpToView();
+                      if (onLinkClick) onLinkClick();
+                    }}
+                    to={{
+                      pathname: `/mapview`,
+                      search: queryString.stringify({
+                        ...queryString.parse(location.search),
+                        disabled: false,
+                        sidebar: true,
+                        loadDraft: false,
+                        buildingId: buildingId,
+                        parcelId: parcelId,
+                      }),
+                    }}
+                  >
+                    Update
+                  </Link>
+                </>
+              )}
               <VerticalBar />
             </>
           )}
