@@ -264,6 +264,7 @@ namespace Pims.Dal.Services.Admin
 
             building.PropertyTypeId = originalBuilding.PropertyTypeId;
             var entry = this.Context.Entry(originalBuilding);
+            building.PropertyTypeId = (int)PropertyTypes.Building;
             entry.CurrentValues.SetValues(building);
             entry.Collection(p => p.Evaluations).Load();
             entry.Collection(p => p.Fiscals).Load();
